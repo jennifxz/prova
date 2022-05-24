@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { dobro, soma, media, temperatura, tabuada, corprimaria} from './service.js';
+import { dobro, soma, media, temperatura, tabuada, corprimaria, ingressocinema, maiornumero} from './service.js';
 const server = Router();
 
 server.get('dobro/:numero', (req, resp) => {
@@ -118,24 +118,56 @@ server.get('/tabuada', (req, resp) => {
     }
 })
 
-server.get('corprimaria/:cor', (req, resp) => {
+server.get ('/corprimaria/:cor', (req, resp) => {
     try {
 
-        const cor = req.params.cor;
-    
-    
+        const color = req.params.color;
+        const x = corprimaria(color);
+
         resp.send({
-            corprimaria: cor
+            corprimaria : x
+        });
+
+
+    } catch (err) {
+        resp.status(404).send({
+            erro:err.message
         });
     }
 
-    catch (err) {
+})
+
+server.post('/ingressocinema', (req,resp) =>{
+    try {
+        const { valores: { inteiras, meias, dia, filme} } = req.body;
+        const x = ingressocinema(inteiras, meias, dia, filme);
+
+        resp.send({
+            ingressocinema: x
+        });
+        
+    } catch (err) {
         resp.status(404).send({
-            erro: err.message
-        })
+            erro:err.message
+        });
     }
 })
 
+server.post('/maiornumero', (req, resp) =>
+{
+    try {
+        const {valores : {arr}} = req.body;
+        const X = maiornumero(arr);
 
+        resp.send({
+            maiornumero : X
+        });
+
+    } catch (err) { 
+        resp.status(404).send({
+            erro:err.message
+        });
+    }
+})
 
 export default server;
