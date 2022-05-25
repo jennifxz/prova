@@ -86,18 +86,16 @@ server.get('/temperatura', (req, resp) => {
     }
 })
 
-server.get('/tabuada', (req, resp) => {
-    try{
-        const  num = Number(req.query.t);
-        const x = tabuada(num);
-
+server.get ('/tabuada', (req, resp) =>{
+    try {
+        const a = Number(req.query.n);
+        const x = tabuada(a);
         resp.send({
-            tabuada : x
+            tabuada: x
         });
-    }
-    catch(err){
-        resp.status(404).send({
-            erro:err.message
+    } catch (err) {
+        resp.send({
+            erro: err.message
         });
     }
 })
