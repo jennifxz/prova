@@ -137,8 +137,8 @@ server.get ('/frequencia/:texto/:caractere', (req, resp) => {
 
 server.post('/Ingresso', (req,resp) =>{
     try {
-        const { qtdInteiras, qtdMeias, diaSemana, nacionalidade} = req.body;
-        const total = Ingresso(qtdInteiras, qtdMeias, diaSemana, nacionalidade);
+        const { qtdInteira, qtdMeia, diaSemana, nacionalidade} = req.body;
+        const total = Ingresso(qtdInteira, qtdMeia, diaSemana, nacionalidade);
 
         resp.send({
             total: total
