@@ -7,8 +7,8 @@ export default function CorPrimaria() {
     const [resposta, setResposta] = useState('')
 
     async function verificarCorPrimaria(){ 
-        const resp = await axios.get('http://localhost:5000/dia2/corPrimaria/' + cor)
-        if(resp.data.primaria === true)
+        const resp = await axios.get('http://localhost:5000/corPrimaria/' + cor)
+        if(resp.data.corPrimaria === true)
             setResposta('Sim!')
         else
             setResposta('Não!')

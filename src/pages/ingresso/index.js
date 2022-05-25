@@ -4,18 +4,19 @@ import { useState } from 'react';
 
 export default function Ingresso() {
 
-    const [inteiras, setInterias] = useState(0);
-    const [meias, setMeias] = useState(0);
+    const [inteira, setInteira] = useState(0);
+    const [meia, setMeia] = useState(0);
     const [diasemana, setDiasemana] = useState('');
     const [nacionalidade, setNacionalidade] = useState('');
     const [total, setTotal] = useState(0);
 
-    async function Calcular() {
-    const resp = await axios.post('http://localhost:5000/dia2/ingressoCinema/', {
-        qtdinteiras:inteiras, 
-        qtdMeias:meias, 
+    async function Calcular () {
+    const resp = await axios.post('http://localhost:5000/Ingresso/', {
+        qtdInteira:inteira, 
+        qtdMeia:meia, 
         diaSemana:diasemana, 
         nacionalidade:nacionalidade
+        
     })
 
     setTotal(resp.data.total);
@@ -27,11 +28,11 @@ export default function Ingresso() {
             <h1>Ingresso</h1>
             <div>
                 <p> Insira a quantidade de inteiras:</p>
-                <input type='text' value={inteiras} onChange={e=> setInterias(Number(e.target.value))}></input>
+                <input type='text' value={inteira} onChange={e=> setInteira(Number(e.target.value))}></input>
             </div>
             <div>
                 <p> Insira a quantidade de meias:</p>
-                <input type='text' value={meias}onChange={e=> setMeias(Number(e.target.value))}></input>
+                <input type='text' value={meia}onChange={e=> setMeia(Number(e.target.value))}></input>
             </div>
             <div>
                 <p> Insira o dia da semana:</p>
@@ -41,7 +42,7 @@ export default function Ingresso() {
                 <p> Insira a nacionalidade do filme:</p>
                 <input type='text' value={nacionalidade} onChange={ e=> setNacionalidade(e.target.value)}></input>
             </div>
-            <button onClick= {Calcular}> Calcular</button>
+            <button type='button' onClick= {Calcular.bind(this)}> Calcular</button>
             <p> O valor total dos ingressos é de {total} </p>
             </div>
     );

@@ -10,7 +10,7 @@ export default function Frequencia() {
     const [resposta, setResposta] = useState(0);
 
     async function verficarFrequencia(){
-    const resp = await axios.get(`http://localhost:5000/dia2/freqCaracter/${texto}/${caractere}`);
+    const resp = await axios.get(`http://localhost:5000/frequencia/${texto}/${caractere}`);
         setResposta(resp.data.freq);
     }
 

@@ -13,7 +13,7 @@ export default function MaiorNumero() {
     }
 
     const verificarMaior = async _ => {
-        const resp = await axios.post('http://localhost:5000/dia2/maiorNumero', numeros)
+        const resp = await axios.post('http://localhost:5000/maiorNumero', numeros)
         setResposta(resp.data.maior)
     }
 
