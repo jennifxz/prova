@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Home from './pages/home/index.js'
 import CorPrimaria from './pages/corPrimaria/index.js'
-import Frequencia from './pages/frequencia/index.js'
+import Frequencia from './pages/frequenciaa/index.js'
 import Ingresso from './pages/ingresso/index.js'
 import MaiorNumero from './pages/maiorNumero/index.js'
 
