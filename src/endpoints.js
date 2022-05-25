@@ -1,38 +1,22 @@
 import { Router } from "express";
-import { dobro, soma, media, temperatura, tabuada, corprimaria, ingressocinema, maiornumero} from './service.js';
+import {dobro, soma, media, temperatura, tabuada, corPrimaria, Ingresso, maiorNumero, frequencia} from './service.js';
 const server = Router();
 
 server.get('dobro/:numero', (req, resp) => {
     try {
-
-        const numero = Number(req.params.numero);
-        const dobro = numero * 2;
+        const numero = req.params.numero;
+        
+        const d = dobro(numero);
 
         resp.send({
-            dobro: dobro
+            dobro: d
         });
     }
 
     catch (err) {
         resp.status(404).send({
             erro: err.message
-        })
-    }
-})
-
-server.get('/dobro', (req, resp) => {
-    try {
-        const numero = Number(req.query.numero);
-        const x = dobro(numero);
-
-        resp.send({
-            dobro: x
         });
-    }
-    catch (err) {
-        resp.status(404).send({
-            erro: err.message
-        })
     }
 })
 
@@ -118,14 +102,14 @@ server.get('/tabuada', (req, resp) => {
     }
 })
 
-server.get ('/corprimaria/:cor', (req, resp) => {
+server.get ('/corPrimaria/:cor', (req, resp) => {
     try {
 
-        const color = req.params.color;
-        const x = corprimaria(color);
+        const cor = req.params.cor;
+        const x = corPrimaria(cor);
 
         resp.send({
-            corprimaria : x
+            corPrimaria : x
         });
 
 
@@ -137,13 +121,27 @@ server.get ('/corprimaria/:cor', (req, resp) => {
 
 })
 
-server.post('/ingressocinema', (req,resp) =>{
+server.get ('/frequencia/:texto/:caractere', (req, resp) => {
     try {
-        const { valores: { inteiras, meias, dia, filme} } = req.body;
-        const x = ingressocinema(inteiras, meias, dia, filme);
+        const { texto, caractere } = req.params;
+        const freq = frequencia( texto, caractere);
+        resp.send({
+            freq: freq
+        });
+    } catch (err) {
+        resp.send({
+            erro: err.message
+        });
+    }
+})
+
+server.post('/Ingresso', (req,resp) =>{
+    try {
+        const { qtdInteiras, qtdMeias, diaSemana, nacionalidade} = req.body;
+        const total = Ingresso(qtdInteiras, qtdMeias, diaSemana, nacionalidade);
 
         resp.send({
-            ingressocinema: x
+            total: total
         });
         
     } catch (err) {
@@ -153,14 +151,13 @@ server.post('/ingressocinema', (req,resp) =>{
     }
 })
 
-server.post('/maiornumero', (req, resp) =>
-{
+server.post('/maiorNumero', (req, resp) =>{
     try {
-        const {valores : {arr}} = req.body;
-        const X = maiornumero(arr);
+        const numeros = req.body;
+        const maior = maiorNumero(numeros);
 
         resp.send({
-            maiornumero : X
+            maior : maior
         });
 
     } catch (err) { 
@@ -169,5 +166,7 @@ server.post('/maiornumero', (req, resp) =>
         });
     }
 })
+
+server
 
 export default server;

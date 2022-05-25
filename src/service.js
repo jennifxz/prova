@@ -2,8 +2,8 @@ export function soma (a, b){
     return a + b;
 }
 
-export function dobro (a){
-    return a * 2;
+export function dobro (numero){
+    return numero * 2;
 }
 
 export function media (a, b, c){
@@ -31,50 +31,49 @@ export function tabuada (num){
     return vezes;
 }
 
-export function corprimaria (color){
+export function corPrimaria (cor){
     
-    
-    if(color == "azul"){
-        return true;
-    }
-    else if (color == "amarelo" || "amarela"){
-        return true;
-    }
-    else if(color == "vermelho" || "vermelha"){
-        return true;
+    if(cor == 'azul' || cor == 'amarelo' || cor == 'vermelho'){
+        return true
     }
     else{
-        return false;
-    }
-}
-
-export function ingressocinema (inteiras, meias, dia, filme){
-
-    let ingresso = 28.5;
-    let meia = 14.25;
-    let filmenacional = 5;
-    let totalnacional = (inteiras*filmenacional) + (meias*filmenacional);
-    let total = (inteiras*ingresso) + (meias*meia);
-    let totalquarta = (meias*meia) + (meias*meias);
-    if (filme == "nacional"){
-        return totalnacional
+        return false
     }
     
-    else if (dia == "quarta"){
-        return totalquarta
-    }
-    
-    else {
-        return total
-    }
     
 }
 
-export function maiornumero (arr){
+export function frequencia(texto, caractere) {
+    let qtd = 0;
+    for (let letra of texto){
+        if(letra==caractere)
+            qtd++
+    }
+    return qtd;
+}
+
+export function Ingresso (qtdInteira, qtdMeia, diaSemana, nacionalidade){
+    if(nacionalidade.toLowerCase() == 'brasileira')
+        return (qtdInteira + qtdMeia) * 5;
+
+    else if (diaSemana.toLowerCase() == 'quarta')
+        return (qtdInteira + qtdMeia) * 14.25;
     
-    let x = Math.max(arr);
+    else 
+        return (qtdInteira * 28.5) + (qtdMeia * 14.25);
     
-    return x
+    
+}
+
+export function maiorNumero (numeros){
+    
+    let maior = Number.MIN_VALUE;
+    for(let item of numeros){
+        if (item > maior)
+        maior = item;
+    }
+    
+    return maior
 
 }
 
